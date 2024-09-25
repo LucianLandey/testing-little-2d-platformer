@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+//LUCIAN IMPORTANT!!!! ALL YOUR CODE IS IN A DOC IN YOUR SCHOOL ACCOUNT FOR THE PLAYER FILE. GO TO THE COMENTS OF SPRITE AND ANIMATION VIDEO READ HOW TO DO IT FOR INTELLIJ.
 
 public class KeyHandler  implements KeyListener {
 
