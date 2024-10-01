@@ -4,7 +4,6 @@ import entity.Player;
 
 import javax.swing.JPanel;
 import java.awt.*;
-//LUCIAN IMPORTANT!!!! ALL YOUR CODE IS IN A DOC IN YOUR SCHOOL ACCOUNT FOR THE PLAYER FILE. GO TO THE COMENTS OF SPRITE AND ANIMATION VIDEO READ HOW TO DO IT FOR INTELLIJ.
 
 public class GamePanel extends JPanel implements Runnable{
     //SCREEN SETTINGS

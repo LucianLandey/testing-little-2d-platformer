@@ -7,6 +7,7 @@ import Main.KeyHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
@@ -38,28 +39,67 @@ public class Player extends Entity{
             left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkleft2.png"));
 
         }catch(IOException e) {
-            e.printStackTrace();;
+            e.printStackTrace();
         }
     }
     public void update() {
-        if (keyH.upPressed == true) {
-            y -= speed;
+        if(keyH.rightPressed == true || keyH.leftPressed == true || keyH.upPressed == true) {
+            if (keyH.upPressed == true) {
+                y -= speed;
+            }
+            if (keyH.downPressed == true) {
+                direction = "down";
+                y += speed;
+            }
+            if (keyH.rightPressed == true) {
+                direction = "right";
+                x+= speed;
+            }
+            if (keyH.leftPressed == true) {
+                direction = "left";
+                x -= speed;
+            }
+            spriteCounter ++;
+            if(spriteCounter > 10) {
+                if(spriteNum == 1) {
+                    spriteNum = 2;
+                }
+                else if (spriteNum == 2) {
+                    spriteNum = 1;
+
+                }
+                spriteCounter = 0;
+            }
         }
-        else if (keyH.downPressed == true) {
-            y += speed;
-        }
-        else if (keyH.leftPressed == true) {
-            x -= speed;
-        }
-        else if (keyH.rightPressed == true) {
-            x += speed;
-        }
+
     }
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.white);
+//        g2.setColor(Color.white);
+//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
 
 
-        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+        BufferedImage image = null;
+        switch (direction) {
+        case "right":
+            if(spriteNum == 1) {
+                image = right1;
+            }
+            if(spriteNum == 2) {
+                image = right2;
+            }
+            break;
+        case "left":
+            if(spriteNum == 1) {
+                image = left1;
+            }
+            if(spriteNum == 2) {
+                image = left2;
+            }
+            break;
+
+
+        }
+        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
 
