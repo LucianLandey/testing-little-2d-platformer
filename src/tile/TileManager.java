@@ -18,7 +18,7 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
         getTileImage();
-        loadMap("res/maps/map1.txt");
+        loadMap("/maps/map1.txt");
     }
     public void getTileImage() {
         try{
@@ -45,7 +45,7 @@ public class TileManager {
                 String line = br.readLine();
 
                 while(col < gp.maxScreenCol) {
-                    String numbers[] = line.split("");
+                    String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
 

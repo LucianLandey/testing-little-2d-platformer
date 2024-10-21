@@ -25,8 +25,8 @@ public class Player extends Entity{
         getPlayerImage();
     }
     public void setDefaultValues() {
-        x=100;
-        y= 100;
+        worldX=100;
+        worldY= 100;
         speed=4;
         direction = "right";
 
@@ -45,18 +45,18 @@ public class Player extends Entity{
     public void update() {
         if(keyH.rightPressed == true || keyH.leftPressed == true || keyH.upPressed == true || keyH.downPressed == true) {
             if (keyH.upPressed == true) {
-                y -= speed;
+                worldY -= speed;
             }
             if (keyH.downPressed == true) {
-                y += speed;
+                worldY += speed;
             }
             if (keyH.rightPressed == true) {
                 direction = "right";
-                x+= speed;
+                worldX+= speed;
             }
             if (keyH.leftPressed == true) {
                 direction = "left";
-                x -= speed;
+                worldX  -= speed;
             }
             spriteCounter ++;
             if(spriteCounter > 10) {
@@ -98,7 +98,7 @@ public class Player extends Entity{
 
 
         }
-        g2.drawImage(image, x, y, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
     }
 }
 
