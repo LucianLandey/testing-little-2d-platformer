@@ -16,7 +16,7 @@ public class Player extends Entity{
 
     GamePanel gp;
     KeyHandler keyH;
-
+    public final int screenX;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -25,8 +25,8 @@ public class Player extends Entity{
         getPlayerImage();
     }
     public void setDefaultValues() {
-        worldX=100;
-        worldY= 100;
+        worldX= gp.tileSize * 5;
+        worldY= gp.tileSize * 5;
         speed=4;
         direction = "right";
 
