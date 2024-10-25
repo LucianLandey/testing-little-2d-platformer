@@ -24,6 +24,7 @@ public class TileManager {
         try{
             tile[0] = new Tile();
             tile[0].image = ImageIO.read(new FileInputStream("res/tiles/murky.png"));
+            tile[0].collision = true;
 
             tile[1] = new Tile();
             tile[1].image = ImageIO.read(new FileInputStream("res/tiles/galaxy.png"));
