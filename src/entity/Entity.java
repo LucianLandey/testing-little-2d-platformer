@@ -7,7 +7,7 @@ public class Entity {
         public int worldX, worldY;
         public int speed;
 
-        public BufferedImage right1, right2, left1, left2;
+        public BufferedImage right1, right2, left1, left2, up1, up2, down1, down2;
         public String direction;
 
         public int spriteCounter =1;
