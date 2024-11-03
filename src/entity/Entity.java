@@ -1,9 +1,13 @@
 package entity;
 
+import Main.GamePanel;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Entity {
+
+        GamePanel gp;
         public int worldX, worldY;
         public int speed;
 
@@ -12,6 +16,11 @@ public class Entity {
 
         public int spriteCounter =1;
         public int spriteNum= 1;
-        public Rectangle solidArea;
+        public Rectangle solidArea = new Rectangle(0,0,48,48);
+        public int solidAreaDefaultX, solidAreaDefaultY;
         public boolean collisionOn = false;
+
+        public Entity(GamePanel gp) {
+                this.gp =gp;
+        }
 }

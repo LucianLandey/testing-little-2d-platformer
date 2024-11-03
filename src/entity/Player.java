@@ -14,16 +14,18 @@ import java.io.IOException;
 public class Player extends Entity {
 
 
-    GamePanel gp;
     KeyHandler keyH;
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+        super(gp);
+
         this.keyH = keyH;
 
         solidArea = new Rectangle(0, 0, 48, 48);
         solidArea.x = 8;
         solidArea.y = 16;
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
         solidArea.width = 32;
         solidArea.height = 32;
         setDefaultValues();
