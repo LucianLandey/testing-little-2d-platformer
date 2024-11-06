@@ -95,6 +95,9 @@ public class Player extends Entity {
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            //CHECK NPC COLLISION
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
             // IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (!collisionOn) {
                 switch (direction) {
@@ -135,6 +138,13 @@ public class Player extends Entity {
                 spriteNum = spriteNum == 1 ? 2 : 1;
                 spriteCounter = 0;
             }
+        }
+    }
+
+    public void interactNPC(int i ) {
+
+        if(i != 999) {
+            System.out.println("YOU ARE HITTING NPC");
         }
     }
 

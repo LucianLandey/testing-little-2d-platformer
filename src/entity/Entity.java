@@ -23,4 +23,13 @@ public class Entity {
         public Entity(GamePanel gp) {
                 this.gp =gp;
         }
+        public void update() {
+                setAction();
+
+                collisionOn = false;
+                gp.cChecker.checkTile(this);
+                //gp.cChecker.checkObject(this, false);
+
+
+        }
 }
