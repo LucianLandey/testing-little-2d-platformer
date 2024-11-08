@@ -13,8 +13,8 @@ public class OBJ_bullet extends Projectile {
 
 
         speed = 5;
-        maxLife = 80;
-        life = maxLife;
-        attack = 2;
+        //\maxLife = 80;
+        //life = maxLife;
+        //attack = 2;
     }
 }
