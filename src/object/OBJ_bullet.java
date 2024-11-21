@@ -3,6 +3,8 @@ package object;
 import Main.GamePanel;
 import entity.Projectile;
 
+import javax.imageio.ImageIO;
+
 public class OBJ_bullet extends Projectile {
 
     GamePanel gp;
@@ -13,8 +15,14 @@ public class OBJ_bullet extends Projectile {
 
 
         speed = 5;
-        //\maxLife = 80;
-        //life = maxLife;
+        maxLife = 80;
+        life = maxLife;
         //attack = 2;
+        //alive = false;
+        getImage();
+    }
+    public void getImage(){
+
+        //right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("bullet1.png"));
     }
 }

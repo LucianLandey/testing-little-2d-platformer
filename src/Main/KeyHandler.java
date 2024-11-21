@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 public class KeyHandler  implements KeyListener {
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed, xPressed;
-
+    boolean checkDrawTime = false;
     public KeyHandler(GamePanel gp) {
         this.gp = gp;
     }
@@ -44,6 +44,16 @@ public class KeyHandler  implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
+        if(code == KeyEvent.VK_T) {
+            if(checkDrawTime == false) {
+                checkDrawTime = true;
+            }
+            else if(checkDrawTime == true) {
+                checkDrawTime = false;
+            }
+        }
+        // DEBUG
+
     }
 
     @Override

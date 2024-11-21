@@ -53,6 +53,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void setupGame() {
         aSetter.setObject();
+        //aSetter.setNPC();
         playMusic(0);
         gameState = playState;
 
@@ -101,15 +102,40 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D)g;
 
+        //DEBUG
+        long drawStart = 0;
+        if(keyH.checkDrawTime == true){
+            drawStart = System.nanoTime();
+
+        }
+
+        //TILE
         tileM.draw(g2);
 
+        //OBJECT
+        for(int i =0; i<npc.length; i++) {
+            if(npc[i] != null) {
+                npc[i].draw(g2);
+            }
+        }
+        //PLAYER
         player.draw(g2);
 
+        //UI
         ui.draw(g2);
+
+        //DEBUG
+         if(keyH.checkDrawTime == true) {
+             long drawEnd = System.nanoTime();
+             long passed = drawEnd - drawStart;
+             g2.setColor(Color.white);
+             g2.drawString("Draw Time: "  + passed, 0, 100);
+             System.out.println("Draw Time " +passed);
+         }
         g2.dispose();
+
     }
     public void playMusic(int i) {
 

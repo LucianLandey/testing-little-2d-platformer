@@ -33,6 +33,18 @@ public class TileManager {
             e.printStackTrace();
         }
     }
+    /*public void setup(int index, String imagePath, boolean collision) {
+        UtilityTool uTool = new UtilityTool();
+
+        try{
+            tile[index] = new Tile();
+            tile[index].image = Image.read(getClass().getResourceAsStream("/tiles/" + imagePath +".png"));
+            tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
+            tile[index].collision = collision;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
     public void loadMap (String filePath) {
         try{
             InputStream is = getClass().getResourceAsStream(filePath);
