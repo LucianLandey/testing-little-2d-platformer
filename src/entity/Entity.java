@@ -30,9 +30,59 @@ public class Entity {
         public Entity(GamePanel gp) {
                 this.gp =gp;
         }
-        public void draw(Graphics2D g2) {
-                BufferedImage image = null;
+        public void setAction() {}
+        public void update() {
+            setAction();
+
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
+            //gp.cChecker.checkObject(this, false);
+            gp.cChecker.checkPlayer(this);
+
+            // MORE CODE FROM ENTITY
+            if (!collisionOn) {
                 switch (direction) {
+                    case "up":
+                        worldY -= speed;
+                        break;
+                    case "down":
+                        worldY += speed;
+                        break;
+                    case "left":
+                        worldX -= speed;
+                        break;
+                    case "right":
+                        worldX += speed;
+                        break;
+                    case "up-right":
+                        worldX += speed * 0.707;
+                        worldY -= speed * 0.707;
+                        break;
+                    case "up-left":
+                        worldX -= speed * 0.707;
+                        worldY -= speed * 0.707;
+                        break;
+                    case "down-right":
+                        worldX += speed * 0.707;
+                        worldY += speed * 0.707;
+                        break;
+                    case "down-left":
+                        worldX -= speed * 0.707;
+                        worldY += speed * 0.707;
+                        break;
+                }
+            }
+
+            // Update sprite animation
+            spriteCounter++;
+            if (spriteCounter > 10) {
+                spriteNum = spriteNum == 1 ? 2 : 1;
+                spriteCounter = 0;
+            }
+        }
+        public void draw(Graphics2D g2) {
+            BufferedImage image = null;
+            switch (direction) {
                         case "up":
                                 if (spriteNum == 1) {
                                         image = up1;
@@ -69,15 +119,8 @@ public class Entity {
                                 }
                                 break;
                 }
-        }
-        public void update() {
-                //setAction();
+            g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
 
-                collisionOn = false;
-                gp.cChecker.checkTile(this);
-                //gp.cChecker.checkObject(this, false);
-                gp.cChecker.checkPlayer(this);
-
-                // MORE CODE FROM ENTITY
         }
+
 }
