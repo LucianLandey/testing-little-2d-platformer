@@ -2,8 +2,6 @@ package entity;
 
 import Main.GamePanel;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.util.Random;
 
 public class NPC_Spider extends Entity{
@@ -17,20 +15,15 @@ public class NPC_Spider extends Entity{
         getImage();
     }
     public void getImage() {
-        try {
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderright1.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderright2.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderleft1.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderleft2.png"));
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderup1.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderup2.png"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderdown1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("npc/spiderdown2.png"));
+        right1 = setup("/npc/spiderright1");
+        right2 = setup("/npc/spiderright2");
+        left1 = setup("/npc/spiderleft1");
+        left2 = setup("/npc/spiderleft2");
+        up1 = setup("/npc/spiderup1");
+        up2 = setup("/npc/spiderup2");
+        down1 = setup("/npc/spiderdown1");
+        down2 = setup("/npc/spiderdown2");
 
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     public void setAction() {
         Random random = new Random();

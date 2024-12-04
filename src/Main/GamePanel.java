@@ -19,6 +19,12 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenWidth = tileSize * maxScreenCol; // 768 px
     public final int screenHeight = tileSize * maxScreenRow; // 576 px
 
+    //WORLD SETTINGS
+    public final int maxWorldCol = 50;
+    public final int maxWorldRow = 50;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
+
     // FPS
     int FPS = 60;
 
@@ -33,7 +39,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
 
     //ENTITY AND OBJECT
-    Player player = new Player(this, keyH);
+    public Player player = new Player(this, keyH);
     public SuperObject obj[] = new SuperObject[10];
     public Entity npc[] = new Entity[10];
 
@@ -110,7 +116,6 @@ public class GamePanel extends JPanel implements Runnable{
             drawStart = System.nanoTime();
 
         }
-
         //TILE
         tileM.draw(g2);
 

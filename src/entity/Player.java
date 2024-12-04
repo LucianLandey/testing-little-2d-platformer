@@ -3,6 +3,7 @@ package entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
 
 
 import javax.imageio.ImageIO;
@@ -16,10 +17,14 @@ public class Player extends Entity {
 
     KeyHandler keyH;
 
+    public final int screenX;
+    public final int screenY;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
 
         this.keyH = keyH;
+        screenX = gp.screenWidth/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
         solidArea = new Rectangle(0, 0, 48, 48);
         solidArea.x = 8;
@@ -33,28 +38,23 @@ public class Player extends Entity {
     }
 
     public void setDefaultValues() {
-        worldX = gp.tileSize * 5;
-        worldY = gp.tileSize * 5;
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
         speed = 4;
         direction = "right";
 
     }
 
     public void getPlayerImage() {
-        try {
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkright1.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkright2.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkleft1.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkleft2.png"));
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkup1.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkup2.png"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkdown1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/mushroomwalkdown2.png"));
+        right1 = setup("/player/mushroomwalkright1");
+        right2 = setup("/player/mushroomwalkright2");
+        left1 = setup("/player/mushroomwalkleft1");
+        left2 = setup("/player/mushroomwalkleft2");
+        up1 = setup("/player/mushroomwalkup1");
+        up2 = setup("/player/mushroomwalkup2");
+        down1 = setup("/player/mushroomwalkdown1");
+        down2 = setup("/player/mushroomwalkdown2");
 
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void update() {
@@ -189,6 +189,6 @@ public class Player extends Entity {
                 break;
         }
 
-        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }

@@ -22,8 +22,8 @@ public class AssetSetter {
     }
     public void setNPC () {
         gp.npc[0] = new NPC_Spider(gp);
-        gp.npc[0].worldX = gp.tileSize*6;
-        gp.npc[0].worldY = gp.tileSize*6;
+        gp.npc[0].worldX = gp.tileSize*21;
+        gp.npc[0].worldY = gp.tileSize*21;
 
     }
 }

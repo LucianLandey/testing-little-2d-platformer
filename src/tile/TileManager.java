@@ -1,6 +1,7 @@
 package tile;
 
 import Main.GamePanel;
+import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,35 +17,27 @@ public class TileManager {
         this.gp = gp;
 
         tile = new Tile[10];
-        mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("/maps/map1.txt");
+        loadMap("/maps/world.txt");
     }
     public void getTileImage() {
-        try{
-            tile[0] = new Tile();
-            tile[0].image = ImageIO.read(new FileInputStream("res/tiles/murky.png"));
-            tile[0].collision = true;
+            setup(0, "murky", true);
+            setup(1, "galaxy", false);
 
-            tile[1] = new Tile();
-            tile[1].image = ImageIO.read(new FileInputStream("res/tiles/galaxy.png"));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
-    /*public void setup(int index, String imagePath, boolean collision) {
+    public void setup(int index, String imageName, boolean collision) {
         UtilityTool uTool = new UtilityTool();
 
         try{
             tile[index] = new Tile();
-            tile[index].image = Image.read(getClass().getResourceAsStream("/tiles/" + imagePath +".png"));
+            tile[index].image = ImageIO.read(getClass().getResourceAsStream("/tiles/" + imageName +".png"));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
     public void loadMap (String filePath) {
         try{
             InputStream is = getClass().getResourceAsStream(filePath);
@@ -53,11 +46,11 @@ public class TileManager {
             int col =0;
             int row = 0;
 
-            while (col < gp.maxScreenCol && row<gp.maxScreenRow) {
+            while (col < gp.maxWorldCol && row<gp.maxWorldRow) {
 
                 String line = br.readLine();
 
-                while(col < gp.maxScreenCol) {
+                while(col < gp.maxWorldCol) {
                     String numbers[] = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
@@ -65,7 +58,7 @@ public class TileManager {
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if (col == gp.maxScreenCol) {
+                if (col == gp.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -76,23 +69,22 @@ public class TileManager {
         }
     }
     public void draw(Graphics2D g2) {
-        int col = 0;
-        int row = 0;
-        int x = 0;
-        int y = 0;
+        int worldCol = 0;
+        int worldRow = 0;
 
-        while(col < gp.maxScreenCol && row < gp.maxScreenRow) {
-            int tileNum = mapTileNum[col][row];
+        while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
+            int tileNum = mapTileNum[worldCol][worldRow];
 
-            g2.drawImage(tile[tileNum].image, x ,y, gp.tileSize, gp.tileSize, null);
-            col ++;
-            x += gp.tileSize;
+            int worldX = worldCol * gp.tileSize;
+            int worldY = worldRow * gp.tileSize;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+            g2.drawImage(tile[tileNum].image, screenX, screenY, null);
+            worldCol ++;
 
-            if (col == gp.maxScreenCol) {
-                col = 0;
-                x= 0;
-                row++;
-                y += gp.tileSize;
+            if (worldCol == gp.maxWorldCol) {
+                worldCol = 0;
+                worldRow++;
             }
         }
     }
