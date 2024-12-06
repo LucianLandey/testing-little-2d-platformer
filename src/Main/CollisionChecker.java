@@ -141,17 +141,47 @@ public class CollisionChecker {
                          if(entity.solidArea.intersects(target[i].solidArea)) {
                                  entity.collisionOn = true;
                                  index = i;
+
                          }
                          break;
-                 }
+                     case "up-right":
+                         entity.solidArea.y -= entity.speed;
+                         entity.solidArea.x += entity.speed;
+                         if(entity.solidArea.intersects(target[i].solidArea)) {
+                             entity.collisionOn = true;
+                             index = i;
+                         }
+                         break;
+                     case "down-right":
+                         entity.solidArea.y += entity.speed;
+                         entity.solidArea.x += entity.speed;
+                         if(entity.solidArea.intersects(target[i].solidArea)) {
+                             entity.collisionOn = true;
+                             index = i;
+                         }
+                         break;
+                     case "down-left":
+                         entity.solidArea.y += entity.speed;
+                         entity.solidArea.x -= entity.speed;
+                         if(entity.solidArea.intersects(target[i].solidArea)) {
+                             entity.collisionOn = true;
+                             index = i;
+                         }
+                         break;
+                     case "up-left":
+                         entity.solidArea.y -= entity.speed;
+                         entity.solidArea.x -= entity.speed;
+                         if(entity.solidArea.intersects(target[i].solidArea)) {
+                             entity.collisionOn = true;
+                             index = i;
+                         }
+                         break;
+                }entity.solidArea.x = entity.solidAreaDefaultX;
+                 entity.solidArea.y = entity.solidAreaDefaultY;
+                 target[i].solidArea.x = target[i].solidAreaDefaultX;
+                 target[i].solidArea.y = target[i].solidAreaDefaultY;
              }
-             entity.solidArea.x = entity.solidAreaDefaultX;
-             entity.solidArea.y = entity.solidAreaDefaultY;
-             target[i].solidArea.x = target[i].solidAreaDefaultX;
-             target[i].solidArea.y = target[i].solidAreaDefaultY;
-
          }
-
         return index;
     }
     public void checkPlayer(Entity entity) {

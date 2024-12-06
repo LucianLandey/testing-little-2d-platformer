@@ -21,6 +21,9 @@ public class Entity {
         public Rectangle solidArea = new Rectangle(0,0,48,48);
         public int solidAreaDefaultX, solidAreaDefaultY;
         public boolean collisionOn = false;
+        public int actionLockCounter = 0;
+        String dialogues[] = new String[20];
+        int dialogueIndex = 0;
 
        //CHARACTER ATTRIBUTES
         public String name;
@@ -33,7 +36,7 @@ public class Entity {
         public Entity(GamePanel gp) {
                 this.gp =gp;
         }
-    public BufferedImage setup(String imagePath) {
+        public BufferedImage setup(String imagePath) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
         try{
@@ -45,6 +48,7 @@ public class Entity {
         return image;
     }
         public void setAction() {}
+    public void speak() {}
         public void update() {
             setAction();
 
@@ -104,41 +108,47 @@ public class Entity {
                     worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                     worldY - gp.tileSize < gp.player.worldY + gp.player.screenY) {
 
+                switch (direction) {
+                    case "up":
+                        if (spriteNum == 1) {
+                            image = up1;
+                        } else if (spriteNum == 2) {
+                            image = up2;
+                        }
+                        break;
+
+                    case "down":
+                        if (spriteNum == 1) {
+                            image = down1;
+                        } else if (spriteNum == 2) {
+                            image = down2;
+                        }
+                        break;
+
+                    case "right":
+                    case "up-right":
+                    case "down-right":
+                        if (spriteNum == 1) {
+                            image = right1;
+                        } else if (spriteNum == 2) {
+                            image = right2;
+                        }
+                        break;
+
+                    case "left":
+                    case "up-left":
+                    case "down-left":
+                        if (spriteNum == 1) {
+                            image = left1;
+                        } else if (spriteNum == 2) {
+                            image = left2;
+                        }
+                        break;
+                }
+
                 g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
             }
-            switch (direction) {
-                case "up":
-                    if (spriteNum == 1) {
-                        image = up1;
-                    } else if (spriteNum == 2) {
-                        image = up2;
-                    }
-                    break;
 
-                case "down":
-                    if (spriteNum == 1) {
-                        image = down1;
-                    } else if (spriteNum == 2) {
-                        image = down2;
-                    }
-                    break;
-
-                case "right":
-                    if (spriteNum == 1) {
-                        image = right1;
-                    } else if (spriteNum == 2) {
-                        image = right2;
-                    }
-                    break;
-
-                case "left":
-                    if (spriteNum == 1) {
-                        image = left1;
-                    } else if (spriteNum == 2) {
-                        image = left2;
-                    }
-                    break;
-            }
             g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
 
         }
