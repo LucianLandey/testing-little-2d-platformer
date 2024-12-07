@@ -27,7 +27,7 @@ public class NPC_Spider extends Entity{
 
     }
     public void setDialogue() {
-        dialogues[0] = "HELLO, I AM THE ANGRY SPIDER";
+        dialogues[0] = "HELLO, I AM THE ANGRY SPIDER BUT I  KAJ S JKSDJ \nFKJSDF JKSD FJSDKL F BLAH BLAH \nBLAH BLAH";
         dialogues[1] = "I HATE EVERYTHING";
         dialogues[2] = "I AM SUPPOSED TO BE AN ENEMY";
         dialogues[3] = "SPIDER";
@@ -55,7 +55,7 @@ public class NPC_Spider extends Entity{
 
     }
     public void speak() {
-        gp.ui.currentDialogue = dialogues[dialogueIndex];
-        dialogueIndex++;
+        // YOU CAN DO CHARACTER SPECIFIC STUFF WITH THIS
+        super.speak();
     }
 }
