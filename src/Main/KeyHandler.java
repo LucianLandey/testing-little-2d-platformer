@@ -37,7 +37,7 @@ public class KeyHandler  implements KeyListener {
             if(code == KeyEvent.VK_Z){
                 if(gp.ui.commandNum == 0){
                     gp.gameState = gp.playState;
-                    gp.playMusic(0);
+//                    gp.playMusic(0);
                 }
                 if(gp.ui.commandNum == 1){
                     //LOAD A SAVED GAME STATE ADD THIS LATER

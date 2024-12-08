@@ -39,6 +39,10 @@ public class Player extends Entity {
         speed = 4;
         direction = "right";
 
+        //PLAYER STATUS
+        maxLife = 6;
+        life = maxLife;
+
     }
 
     public void getPlayerImage() {
@@ -94,8 +98,13 @@ public class Player extends Entity {
             //CHECK NPC COLLISION
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
-            //int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
-            //interactNPC(npcIndex);
+
+            //CHECK EVENT
+            gp.eHandler.checkEvent();
+            gp.keyH.zPressed = false;
+
+
+
             // IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (!collisionOn) {
                 switch (direction) {
@@ -148,7 +157,6 @@ public class Player extends Entity {
 
             }
         }
-        gp.keyH.zPressed = false;
     }
 
     public void draw(Graphics2D g2) {

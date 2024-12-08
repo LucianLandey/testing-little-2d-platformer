@@ -3,7 +3,6 @@ package object;
 import Main.GamePanel;
 import entity.Projectile;
 
-import javax.imageio.ImageIO;
 
 public class OBJ_bullet extends Projectile {
 

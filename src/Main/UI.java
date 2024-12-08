@@ -1,17 +1,19 @@
 package Main;
 
-import jdk.internal.util.xml.impl.Input;
+
+import object.OBJ_Heart;
+import object.SuperObject;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.DecimalFormat;
 
 public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font prstartk, vgafix, VINERITC, purisa;
+    BufferedImage heart, halfheart, noheart;
     public boolean messageOn = false;
     public String message = "";
     int messageCounter =0;
@@ -37,6 +39,11 @@ public class UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //CREATE HUD OBJECT
+        SuperObject heartobj = new OBJ_Heart(gp);
+        heart = heartobj.image;
+        halfheart = heartobj.image2;
+        noheart = heartobj.image3;
     }
 
     public void showMessage(String text) {
@@ -56,16 +63,44 @@ public class UI {
         }
         // PLAY STATE
         if(gp.gameState == gp.playState) {
-            //
+            drawPlayerLife();
         }
         //PAUSE STATE
         if(gp.gameState == gp.pauseState) {
+            drawPlayerLife();
             drawPauseScreen();
         }
         // DIALOGUE STATE
         if(gp.gameState == gp.dialogueState) {
+            drawPlayerLife();
             drawDialogueScreen();
         }
+    }
+    public void drawPlayerLife() {
+
+        int x= gp.tileSize/2;
+        int y= gp.tileSize/2;
+        int i =0;
+        //DRAW BLANK HEART
+        while(i < gp.player.maxLife/2){
+            g2.drawImage(noheart, x, y, null);
+            i++;
+                    x += gp.tileSize;
+        }
+        x= gp.tileSize/2;
+        y= gp.tileSize/2;
+        i =0;
+        //DRAW CURRENT HEART
+        while(i < gp.player.life){
+            g2.drawImage(halfheart, x, y, null);
+            i++;
+            if(i < gp.player.life){
+                g2.drawImage(heart, x, y, null);
+            }
+            i++;
+            x += gp.tileSize;
+        }
+
     }
     public void drawTitleScreen(){
         g2.setColor(new Color(115, 24, 165));
