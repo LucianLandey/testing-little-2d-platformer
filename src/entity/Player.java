@@ -3,6 +3,7 @@ package entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import object.OBJ_bullet;
 
 
 import java.awt.*;
@@ -42,6 +43,7 @@ public class Player extends Entity {
         //PLAYER STATUS
         maxLife = 6;
         life = maxLife;
+        projectile = new OBJ_bullet(gp);
 
     }
 
@@ -145,6 +147,12 @@ public class Player extends Entity {
                 spriteNum = spriteNum == 1 ? 2 : 1;
                 spriteCounter = 0;
             }
+        }
+        if(gp.keyH.xPressed == true) {
+            //SET DEFAULT COORDINATES, DIRECTION AND USER
+            projectile.set(worldX, worldY, direction, true, this);
+            // ADD IT TO THE LIST
+            gp.projectileList.add(projectile);
         }
     }
 

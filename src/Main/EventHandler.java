@@ -7,6 +7,9 @@ public class EventHandler {
     GamePanel gp;
     EventRect eventRect[][];
 
+    int previousEventX, previousEventY;
+    boolean canTouchEvent = true;
+
     public EventHandler(GamePanel gp) {
         this.gp = gp;
 
@@ -32,13 +35,21 @@ public class EventHandler {
     }
 
     public void checkEvent() {
-        if(hit(27,16,"right") == true){
-            damagePit(27,16,gp.dialogueState);}
-        if(hit(23,12,"up") == true){
-            healingPool(27,16,gp.dialogueState);}
-        if(hit(23,9,"up") == true){
-            teleport(27,16,gp.gameState);}
-
+        //CHECK IF PLAYER CHARACTER IS MORE THAN 1 TILE AWAY FROM LAST EVENT
+        int xDistance = Math.abs(gp.player.worldX - previousEventX);
+        int yDistance = Math.abs(gp.player.worldY - previousEventY);
+        int distance = Math.max(xDistance, yDistance);
+        if(distance > gp.tileSize) {
+            canTouchEvent = true;
+        }
+        if (canTouchEvent == true) {
+            if(hit(27,16,"right") == true){
+                damagePit(27,16,gp.dialogueState);}
+            if(hit(23,12,"up") == true){
+                healingPool(23,12,gp.dialogueState);}
+            if(hit(23,9,"up") == true){
+                teleport(23,19,gp.gameState);}
+        }
     }
     public boolean hit(int col, int row, String reqDirection) {
         boolean hit = false;
@@ -51,6 +62,9 @@ public class EventHandler {
         if(gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
             if(gp.player.direction.equals(reqDirection) || reqDirection.contentEquals("any")) {
                 hit = true;
+
+                previousEventX = gp.player.worldX;
+                previousEventY = gp.player.worldY;
             }
         }
 
@@ -67,6 +81,7 @@ public class EventHandler {
         gp.ui.currentDialogue = "You fell into a pit!";
         gp.player.life -= 2;
         eventRect[col][row].eventDone= true;
+
     }
     public void healingPool(int col, int row, int gameState) {
 
@@ -74,7 +89,10 @@ public class EventHandler {
             gp.gameState = gameState;
             gp.ui.currentDialogue = "You heal!";
             gp.player.life = gp.player.maxLife;
+            eventRect[col][row].eventDone= true;
+
         }
+
 
     }
     public void teleport(int col, int row, int gameState){

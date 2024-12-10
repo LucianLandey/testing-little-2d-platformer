@@ -25,6 +25,9 @@ public class Entity {
         String dialogues[] = new String[20];
         int dialogueIndex = 0;
 
+        public boolean alive = true;
+        public boolean dying = false;
+
        //CHARACTER ATTRIBUTES
         public String name;
         public int speed;

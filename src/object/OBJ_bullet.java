@@ -17,11 +17,19 @@ public class OBJ_bullet extends Projectile {
         maxLife = 80;
         life = maxLife;
         //attack = 2;
-        //alive = false;
+        alive = false;
         getImage();
     }
     public void getImage(){
+        right1 = setup("/projectile/bullet1");
+        right2 = setup("/projectile/bullet2");
+        left1 = setup("/projectile/bullet1");
+        left2 = setup("/projectile/bullet2");
+//        right1 = setup("/player/mushroomwalkright1");
+//        right1 = setup("/player/mushroomwalkright1");
+//        right1 = setup("/player/mushroomwalkright1");
+//        right1 = setup("/player/mushroomwalkright1");
 
-        //right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("bullet1.png"));
+
     }
 }
