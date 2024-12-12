@@ -1,18 +1,19 @@
 package object;
 
+import Main.GamePanel;
+import entity.Entity;
+
 import javax.imageio.ImageIO;
 import java.io.IOException;
 
-public class OBJ_power extends SuperObject{
+public class OBJ_power extends Entity {
 
-    public OBJ_power() {
-
+    public OBJ_power(GamePanel gp) {
+        super(gp);
         name = "power";
-        try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("objects/powerup1.png"));
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
+        down1 = setup("objects/powerup1");
+
+
     }
 
 }

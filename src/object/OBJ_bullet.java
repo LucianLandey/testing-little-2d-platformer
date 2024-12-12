@@ -1,10 +1,11 @@
 package object;
 
 import Main.GamePanel;
+import entity.Entity;
 import entity.Projectile;
 
 
-public class OBJ_bullet extends Projectile {
+public class OBJ_bullet extends Entity {
 
     GamePanel gp;
 
