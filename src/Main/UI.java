@@ -41,7 +41,7 @@ public class UI {
         }
         //CREATE HUD OBJECT
         Entity heartobj = new OBJ_Heart(gp);
-        heart = heartobj.image;
+        heart = heartobj.image1;
         halfheart = heartobj.image2;
         noheart = heartobj.image3;
     }

@@ -43,7 +43,7 @@ public class Player extends Entity {
         //PLAYER STATUS
         maxLife = 6;
         life = maxLife;
-        projectile = new OBJ_bullet(gp);
+        projectile = new Projectile(gp);
 
     }
 

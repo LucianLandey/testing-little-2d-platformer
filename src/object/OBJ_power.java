@@ -3,15 +3,12 @@ package object;
 import Main.GamePanel;
 import entity.Entity;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-
 public class OBJ_power extends Entity {
 
     public OBJ_power(GamePanel gp) {
         super(gp);
         name = "power";
-        down1 = setup("objects/powerup1");
+        down1 = setup("/objects/powerup1");
 
 
     }
