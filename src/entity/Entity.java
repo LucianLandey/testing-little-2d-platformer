@@ -42,16 +42,16 @@ public class Entity {
                 this.gp =gp;
         }
         public BufferedImage setup(String imagePath) {
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-        try{
-            image = ImageIO.read(getClass().getResourceAsStream( imagePath + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-        } catch (IOException e) {
-            e.printStackTrace();
+            UtilityTool uTool = new UtilityTool();
+            BufferedImage image = null;
+            try{
+                image = ImageIO.read(getClass().getResourceAsStream( imagePath + ".png"));
+                image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return image;
         }
-        return image;
-    }
         public void setAction() {}
         public void speak() {
 

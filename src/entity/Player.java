@@ -16,6 +16,7 @@ public class Player extends Entity {
     KeyHandler keyH;
     public final int screenX;
     public final int screenY;
+    public int numproj = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
 
@@ -43,7 +44,7 @@ public class Player extends Entity {
         //PLAYER STATUS
         maxLife = 6;
         life = maxLife;
-        projectile = new Projectile(gp);
+        projectile = new OBJ_bullet(gp);
 
     }
 
@@ -148,11 +149,12 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
-        if(gp.keyH.xPressed == true) {
+        if(gp.keyH.xPressed == true && projectile.alive == false) {
             //SET DEFAULT COORDINATES, DIRECTION AND USER
             projectile.set(worldX, worldY, direction, true, this);
             // ADD IT TO THE LIST
             gp.projectileList.add(projectile);
+            numproj ++;
         }
     }
 

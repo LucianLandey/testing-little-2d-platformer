@@ -1,7 +1,6 @@
 package entity;
 
 import Main.GamePanel;
-import Main.KeyHandler;
 
 public class Projectile extends Entity {
 
@@ -19,6 +18,13 @@ public class Projectile extends Entity {
             this.life = this.maxLife;
    }
    public void update() {
+
+      if(user == gp.player){
+         int
+      }
+      else {
+
+      }
       switch(direction){
          case "up":
             worldY -= speed;
