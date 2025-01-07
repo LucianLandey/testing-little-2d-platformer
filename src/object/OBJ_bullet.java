@@ -15,7 +15,7 @@ public class OBJ_bullet extends Projectile {
 
         name = "Bullet";
         speed = 15;
-        maxLife = 10;
+        maxLife = 30;
         life = maxLife;
         //attack = 2;
         alive = false;
@@ -23,13 +23,13 @@ public class OBJ_bullet extends Projectile {
     }
     public void getImage(){
         right1 = setup("/projectiles/bullet1");
-        right2 = setup("/projectiles/bullet2");
+        right2 = setup("/projectiles/bullet1");
         left1 = setup("/projectiles/bullet1");
-        left2 = setup("/projectiles/bullet2");
-        down1 = setup("/projectiles/bullet1");
-        down2 = setup("/projectiles/bullet2");
-        up1 = setup("/projectiles/bullet1");
-        up2 = setup("/projectiles/bullet2");
+        left2 = setup("/projectiles/bullet1");
+        down1 = setup("/projectiles/bulletup");
+        down2 = setup("/projectiles/bulletup");
+        up1 = setup("/projectiles/bulletup");
+        up2 = setup("/projectiles/bulletup");
 
 
     }

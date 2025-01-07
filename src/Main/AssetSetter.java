@@ -1,6 +1,7 @@
 package Main;
 
 import entity.NPC_Spider;
+import monster.MON_slug;
 import object.OBJ_power;
 
 public class AssetSetter {
@@ -24,12 +25,10 @@ public class AssetSetter {
         gp.npc[0] = new NPC_Spider(gp);
         gp.npc[0].worldX = gp.tileSize*21;
         gp.npc[0].worldY = gp.tileSize*21;
-        gp.npc[1] = new NPC_Spider(gp);
-        gp.npc[1].worldX = gp.tileSize*24;
-        gp.npc[1].worldY = gp.tileSize*24;
-        gp.npc[2] = new NPC_Spider(gp);
-        gp.npc[2].worldX = gp.tileSize*23;
-        gp.npc[2].worldY = gp.tileSize*22;
-
+    }
+    public void setMonster(){
+        gp.monster[0] = new MON_slug(gp);
+        gp.monster[0].worldX = gp.tileSize*23;
+        gp.monster[0].worldY = gp.tileSize * 36;
     }
 }

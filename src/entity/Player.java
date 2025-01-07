@@ -18,6 +18,7 @@ public class Player extends Entity {
     public final int screenY;
     public int numproj = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
+        type = 0;
         super(gp);
 
         this.keyH = keyH;
@@ -45,6 +46,9 @@ public class Player extends Entity {
         maxLife = 6;
         life = maxLife;
         projectile = new OBJ_bullet(gp);
+        projectile.worldX = 23* gp.tileSize;
+        projectile.worldY = 23* gp.tileSize;
+
 
     }
 
@@ -102,6 +106,10 @@ public class Player extends Entity {
             int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
             interactNPC(npcIndex);
 
+            //CHECK MONSTER COLLISION
+            int monsterIndex = gp.cChecker.checkEntity(this, gp.monster);
+            contactMonster(monsterIndex);
+
             //CHECK EVENT
             gp.eHandler.checkEvent();
             gp.keyH.zPressed = false;
@@ -156,6 +164,13 @@ public class Player extends Entity {
             gp.projectileList.add(projectile);
             numproj ++;
         }
+        if(invincible == true){
+            invincibleFrames++;
+            if(invincibleFrames > 60){
+                invincible = false;
+                invincibleFrames = 0;
+            }
+         }
     }
 
     public void interactNPC(int i ) {
@@ -168,7 +183,16 @@ public class Player extends Entity {
             }
         }
     }
+    public void contactMonster(int i){
+        if(i != 999){
 
+            if(invincible == false){
+                life -=1;
+                invincible = true;
+            }
+
+        }
+    }
     public void draw(Graphics2D g2) {
         BufferedImage image = null;
 

@@ -20,7 +20,7 @@ public class Projectile extends Entity {
    public void update() {
 
       if(user == gp.player){
-         int
+
       }
       else {
 
