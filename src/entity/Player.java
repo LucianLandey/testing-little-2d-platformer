@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 
+
 public class Player extends Entity {
 
 
@@ -18,8 +19,9 @@ public class Player extends Entity {
     public final int screenY;
     public int numproj = 0;
     public Player(GamePanel gp, KeyHandler keyH) {
-        type = 0;
         super(gp);
+        type = 0;
+
 
         this.keyH = keyH;
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -65,7 +67,7 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyH.rightPressed || keyH.leftPressed || keyH.upPressed || keyH.downPressed) {
+        if (keyH.rightPressed || keyH.leftPressed || keyH.upPressed || keyH.downPressed || keyH.zPressed) {
 
             // Determine direction based on key presses
             if (keyH.upPressed && keyH.rightPressed) {
@@ -112,12 +114,9 @@ public class Player extends Entity {
 
             //CHECK EVENT
             gp.eHandler.checkEvent();
-            gp.keyH.zPressed = false;
-
-
 
             // IF COLLISION IS FALSE, PLAYER CAN MOVE
-            if (!collisionOn) {
+            if (!collisionOn && keyH.zPressed == false) {
                 switch (direction) {
                     case "up":
                         worldY -= speed;
@@ -149,7 +148,7 @@ public class Player extends Entity {
                         break;
                 }
             }
-
+            gp.keyH.zPressed = false;
             // Update sprite animation
             spriteCounter++;
             if (spriteCounter > 10) {
@@ -157,12 +156,19 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
-        if(gp.keyH.xPressed == true && projectile.alive == false) {
+        if(gp.keyH.xPressed == true && projectile.alive == false && delayTime == 30) {
             //SET DEFAULT COORDINATES, DIRECTION AND USER
             projectile.set(worldX, worldY, direction, true, this);
             // ADD IT TO THE LIST
             gp.projectileList.add(projectile);
             numproj ++;
+            delayTime--;
+        }
+        if (delayTime != 30){
+            delayTime --;
+            if (delayTime <= 0){
+                delayTime = 30;
+            }
         }
         if(invincible == true){
             invincibleFrames++;
@@ -191,6 +197,18 @@ public class Player extends Entity {
                 invincible = true;
             }
 
+        }
+    }
+    public void damageMonster(int i, int attack){
+        if (i!= 999) {
+            if(gp.monster[i].invincible == false){
+                gp.monster[i].life -=attack;
+                //possibility of adding monster invinciiblity
+                // gp.monster[i].invincible = true;
+                if(gp.monster[i].life <= 0){
+                    gp.monster[i].dying = true;
+                }
+            }
         }
     }
     public void draw(Graphics2D g2) {
@@ -233,7 +251,14 @@ public class Player extends Entity {
                 }
                 break;
         }
+        if (invincible == true) {
+                g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, .5f));
+        }
 
         g2.drawImage(image, screenX, screenY, null);
+
+        //reset from invincible state
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
+
     }
 }

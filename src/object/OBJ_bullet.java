@@ -17,7 +17,7 @@ public class OBJ_bullet extends Projectile {
         speed = 15;
         maxLife = 30;
         life = maxLife;
-        //attack = 2;
+        attack = 1;
         alive = false;
         getImage();
     }
