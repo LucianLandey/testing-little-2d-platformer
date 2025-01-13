@@ -199,24 +199,33 @@ public class Entity {
                     }
                     break;
             }
+            if (dying == true){
+                dyingAnimation(g2);
 
+            }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 1f));
         }
-        if (dying == true){
-            dyingAnimation();
-        }
-        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
-
     }
     public void dyingAnimation(Graphics2D g2){
         dyingCounter++;
-        boolean animswitcher = false;
-        if(dyingCounter <= 5){
-            g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0f));
-        }
-        for(int i =0; i < 40; i += 5){
-            animswitcher = true;
+        System.out.println("I AM WORKING" + dyingCounter);
+        if (dyingCounter <= 5) { changeAlpha(g2, 0f); }
+        if (dyingCounter > 5 && dyingCounter <= 10) { changeAlpha(g2, 1f); }
+        if (dyingCounter > 10 && dyingCounter <= 15) { changeAlpha(g2, 0f); }
+        if (dyingCounter > 15 && dyingCounter <= 20) { changeAlpha(g2, 1f); }
+        if (dyingCounter > 20 && dyingCounter <= 25) { changeAlpha(g2, 0f); }
+        if (dyingCounter > 25 && dyingCounter <= 30) { changeAlpha(g2, 1f); }
+        if (dyingCounter > 30 && dyingCounter <= 35) { changeAlpha(g2, 0f); }
+        if (dyingCounter > 35 && dyingCounter <= 40) { changeAlpha(g2, 1f); }
+        if (dyingCounter > 40 && dyingCounter <= 45) { changeAlpha(g2, 0f); }
+        if (dyingCounter > 45 && dyingCounter <= 50) { changeAlpha(g2, 1f); }
+        if (dyingCounter > 50) { dying = false; alive = false; }
 
-        }
+
+    }
+
+    public void changeAlpha(Graphics2D g2, float alphaValue){
+        g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alphaValue));
     }
 }
