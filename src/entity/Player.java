@@ -3,6 +3,7 @@ package entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import object.OBJ_Gun_Normal;
 import object.OBJ_bullet;
 
 
@@ -45,13 +46,23 @@ public class Player extends Entity {
         direction = "right";
 
         //PLAYER STATUS
-        maxLife = 6;
+        level = 1;
+        maxLife = 10;
         life = maxLife;
+        strength = 1; // more health, more damage
+        dexterity = 1; // more i frames (idea), more movement speed, faster weapon speed
+        currentWeapon = new OBJ_Gun_Normal(gp);
+        attack = getAttack();
+
+        //PROJECTILE
         projectile = new OBJ_bullet(gp);
         projectile.worldX = 23* gp.tileSize;
         projectile.worldY = 23* gp.tileSize;
 
 
+    }
+    public int getAttack(){
+        return attack = strength * currentWeapon.attackValue;
     }
 
     public void getPlayerImage() {
@@ -156,13 +167,15 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
-        if(gp.keyH.xPressed == true && projectile.alive == false && delayTime == 30) {
+        if(gp.keyH.xPressed && !projectile.alive && delayTime == 30) {
             //SET DEFAULT COORDINATES, DIRECTION AND USER
             projectile.set(worldX, worldY, direction, true, this);
             // ADD IT TO THE LIST
             gp.projectileList.add(projectile);
             numproj ++;
             delayTime--;
+            int chooser = (int) (Math.random() * 2) + 2;
+            gp.playSE(chooser);
         }
         if (delayTime != 30){
             delayTime --;

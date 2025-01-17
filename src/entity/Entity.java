@@ -15,20 +15,22 @@ public class Entity {
     GamePanel gp;
     public int worldX, worldY;
 
+    //DRAWING
     public BufferedImage right1, right2, left1, left2, up1, up2, down1, down2;
     public String direction = "down";
-    String dialogues[] = new String[20];
+
     public int spriteCounter =1;
     public int spriteNum= 1;
     public Rectangle solidArea = new Rectangle(0,0,48,48);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
+
     public int actionLockCounter = 0;
     public boolean invincible = false;
     public int invincibleFrames = 0;
     public int delayTime = 30;
-    public int attack = 0;
 
+    String dialogues[] = new String[20];
     int dialogueIndex = 0;
     public BufferedImage image, image2, image3, image1;
     public String name;
@@ -43,9 +45,16 @@ public class Entity {
     public int speed;
     public int life;
     public int maxLife;
+    public int strength;
+    public int dexterity;
+    public int attack;
+    public int level;
+    public Entity currentWeapon;
+
+    //ITEM ATTRIBUTES
+    public int attackValue;
+
     public Projectile projectile;
-
-
     public Entity(GamePanel gp) {
             this.gp =gp;
     }
@@ -199,6 +208,20 @@ public class Entity {
                     }
                     break;
             }
+            //MONSTER HP BAR
+
+            if(type == 2){
+                if(life != maxLife){
+                    double oneScale = (double) gp.tileSize/maxLife;
+                    double hpBarVal = oneScale*life;
+                    g2.setColor(new Color(35,35,35));
+                    g2.fillRect(screenX-1,screenY-16,gp.tileSize+2,12);
+
+                    g2.setColor(new Color(255,0,30));
+                    g2.fillRect(screenX,screenY-15,(int)hpBarVal, 10);
+                }
+            }
+
             if (dying == true){
                 dyingAnimation(g2);
 
