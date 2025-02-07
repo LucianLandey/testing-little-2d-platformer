@@ -69,6 +69,9 @@ public class KeyHandler  implements KeyListener {
             if (code == KeyEvent.VK_P) {
                 gp.gameState = gp.pauseState;
             }
+            if(code == KeyEvent.VK_I) {
+                gp.gameState = gp.characterState;
+            }
             if (code == KeyEvent.VK_Z) {
                 zPressed = true;
             }
@@ -93,6 +96,11 @@ public class KeyHandler  implements KeyListener {
                 gp.gameState = gp.playState;
             }
         }
+        else if (gp.gameState == gp.characterState){
+            if(code == KeyEvent.VK_I){
+                gp.gameState = gp.playState;
+            }
+        }
     }
     @Override
     public void keyReleased(KeyEvent e) {
@@ -114,6 +122,6 @@ public class KeyHandler  implements KeyListener {
         if(code == KeyEvent.VK_X) {
             xPressed = false;
         }
-        }
-
     }
+
+}

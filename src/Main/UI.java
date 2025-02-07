@@ -75,7 +75,21 @@ public class UI {
             drawPlayerLife();
             drawDialogueScreen();
         }
+        //CHARACTER STATE
+        if(gp.gameState == gp.characterState){
+            drawCharacterScreen();
+        }
     }
+
+    public void drawCharacterScreen() {
+        //create a frame
+        final int frameX = gp.tileSize*2;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize*5;
+        final int frameHeight = gp.tileSize*10;
+        drawSubWindow(frameX,frameY,frameWidth,frameHeight);
+    }
+
     public void drawPlayerLife() {
 
         int x= gp.tileSize/2;

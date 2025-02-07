@@ -232,7 +232,7 @@ public class Entity {
     }
     public void dyingAnimation(Graphics2D g2){
         dyingCounter++;
-        System.out.println("I AM WORKING" + dyingCounter);
+        
         if (dyingCounter <= 5) { changeAlpha(g2, 0f); }
         if (dyingCounter > 5 && dyingCounter <= 10) { changeAlpha(g2, 1f); }
         if (dyingCounter > 10 && dyingCounter <= 15) { changeAlpha(g2, 0f); }
